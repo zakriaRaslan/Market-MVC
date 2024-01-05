@@ -1,9 +1,10 @@
-using MarketWeb.Models;
-using Microsoft.AspNetCore.Mvc;
+
+using Market.Utility;
 using System.Diagnostics;
 
-namespace MarketWeb.Controllers
+namespace MarketWeb.Areas.Customer.Controllers
 {
+    [Area(StaticData.CustomerArea)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

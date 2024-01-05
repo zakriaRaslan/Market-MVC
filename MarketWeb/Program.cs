@@ -1,3 +1,4 @@
+
 namespace MarketWeb
 {
     public class Program
@@ -5,9 +6,13 @@ namespace MarketWeb
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new NullReferenceException();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 
@@ -28,7 +33,7 @@ namespace MarketWeb
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

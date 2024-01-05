@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="container mt-4">
+    
+<div class="row ">
+    <div class="card p-3">
+        <div class="card-header row">
+            <h2 class="col-6 ">Categories List</h2>
+                <div class="text-end col-6">
+                <a class="btn btn-success btn-lg " asp-controller="Categories" asp-action="Create">Add New Category</a>
+            </div>
+           
+        </div>  
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th class="w-25">Id</th>
+                    <th class="w-25">Name</th>
+                    <th class="text-end w-50">Options</th>
+                </tr>
+                @foreach(var category in Model)
+                {
+                    <tr>
+                        <td class="w-25">@category.Id</td>
+                        <td class="w-25">@category.Name</td>
+                        <td class="text-end w-50">
+                            <a class="btn btn-info me-3" asp-controller="categories" asp-action="Edit" asp-route-Id="@category.Id"><i class="fa-solid fa-pen"></i> Edit</a>
+                                <a href="javaScript:" class="btn btn-danger me-3 js-delete" data-Id="@category.Id"><i class="fa-solid fa-trash"></i> Delete</a>
+                        </td>
+                      
+                    </tr>
+                }
+               
+                 
+                
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+
+@section Scripts{
+   <script src="/js/Category.js" asp-append-version="true"></script>
+}                             

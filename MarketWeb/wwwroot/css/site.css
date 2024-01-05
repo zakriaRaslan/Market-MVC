@@ -20,3 +20,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/*Custom Style For sweetAlert2*/
+
+div:where(.swal2-icon).swal2-warning {
+    border-color: #e95420;
+    color: #e95420;
+}
+
+/*End Style For sweetAlert2*/
