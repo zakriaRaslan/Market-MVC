@@ -7,10 +7,13 @@ namespace Market.Data.Repositories
         private AppDbContext _context;
         public ICategoryRepository Category { get; private set; }
 
+        public IProductRepository Product { get; private set; }
+
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
             Category = new CategoryRepository(_context);
+            Product = new ProductRepository(_context);
         }
 
 

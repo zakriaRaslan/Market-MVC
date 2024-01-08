@@ -21,6 +21,14 @@ body {
   margin-bottom: 60px;
 }
 
+/*Custom CSS*/
+
+.cover-preview {
+    border-radius: 5px;
+    border: 1px solid #bbb9b9
+}
+/*EndCustomCSS*/
+
 /*Custom Style For sweetAlert2*/
 
 div:where(.swal2-icon).swal2-warning {
@@ -28,4 +36,34 @@ div:where(.swal2-icon).swal2-warning {
     color: #e95420;
 }
 
+
 /*End Style For sweetAlert2*/
+
+/*Start Custom Style For Home Index*/
+.index-card {
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 0;
+}
+.index-card .card-text{
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.index-card img {
+    height: 300px
+}
+    .index-card .card-body {
+        height: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .index-card .card-body p {
+        height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .index-card .card-body p span{
+        overflow:hidden;
+    }
+/*End Custom Style For Home Index*/

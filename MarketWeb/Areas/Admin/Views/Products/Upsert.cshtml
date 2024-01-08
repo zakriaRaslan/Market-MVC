@@ -1,0 +1,84 @@
+﻿@model ProductViewModel
+@{
+    ViewData["Title"] = "UpSert";
+}
+
+<div class="card">
+    <div class="card-header row m-0">
+        <h2 class="text-primary">
+            @(Model.Product.Id!=0?"Update":"Create") New Category
+        </h2>
+    </div>
+    
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@Model.Product.Image" class="img-preview" width="100%"/>
+            </div>
+            <div class="col-8">
+                <form method="post" enctype="multipart/form-data">
+                    <input asp-for="Product.Id" hidden  />
+                    <input asp-for="Product.Image" hidden  />
+                    <div class="text-danger" asp-validation-summary="ModelOnly">
+                    </div>
+                    <div class="mb-3 py-2 form-floating">
+                        <input class="form-control border-0 shadow" asp-for="Product.Title" />
+                        <label class="ms-2" asp-for="Product.Title"></label>
+                        <span class="text-danger" asp-validation-for="Product.Title"> </span>
+                    </div>
+                    <div class="mb-3 py-2 form-floating">
+                        <input class="form-control border-0 shadow" asp-for="Product.Price" />
+                        <label class="ms-2" asp-for="Product.Price"></label>
+                        <span class="text-danger" asp-validation-for="Product.Price"> </span>
+                    </div>
+                    <div class="mb-3 py-2 form-floating col-12">
+                        <select class="form-select border-0 shadow" asp-items="@Model.CategoryList"
+                                asp-for="Product.CategoryId">
+                            <option selected disabled>Select Category</option>
+                        </select>
+                        <label class="ms-2" asp-for="Product.CategoryId"></label>
+                        <span class="text-danger" asp-validation-for="Product.CategoryId"> </span>
+                    </div>
+                    <div class="mb-3 py-2 form-floating">
+                        <input type="file" name="file" class="form-control border-0 shadow img-input"
+                               data-rule-extension="@StaticData.AllowedImgExtensions.Replace(".", string.Empty)"
+                               data-msg-extension="This Extension Is Not Allowed"
+                               data-rule-filesize="@StaticData.MaxImgSizeInByte"
+                               data-msg-filesize="Maximum Size For Image Is @StaticData.MaxImgSizeInMB MB" />
+                        <label class="ms-2" asp-for="Product.Image"></label>
+                        <span class="text-danger" asp-validation-for="Product.Image"> </span>
+                    </div>
+                    <div class="mb-3 py-2 ">
+                        <label class="ms-2 text-muted" asp-for="Product.Description"></label>
+                        <textarea class="form-control border-0 shadow" asp-for="Product.Description"></textarea>
+                        <span class="text-danger" asp-validation-for="Product.Description"> </span>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-around p-1">
+                        <a class="btn btn-outline-warning" style="width:40%" asp-action="Index">Back To List</a>
+                        <button class="btn btn-outline-success" style="width:40%" type="submit" asp-controller="Products" asp-action="Upsert">@(Model.Product.Id !=0 ? "Update":"Create")</button>
+                    </div>
+
+                </form>
+            </div>
+           
+        </div>
+    
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: ' anchor autolink charmap codesample emoticons  lists  table visualblocks wordcount ',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough  |  align lineheight | numlist bullist indent outdent ',      
+        });
+
+     
+    </script>
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="/js/imagePreview.js" asp-append-version="true"></script>
+    <script src="~/js/filesize-validator.js" asp-append-version="true"></script>
+
+}

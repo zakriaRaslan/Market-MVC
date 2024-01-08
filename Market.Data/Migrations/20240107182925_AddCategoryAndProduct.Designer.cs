@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240103210713_SeedDataToCategoriesTable")]
-    partial class SeedDataToCategoriesTable
+    [Migration("20240107182925_AddCategoryAndProduct")]
+    partial class AddCategoryAndProduct
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,8 @@ namespace Market.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -59,11 +59,10 @@ namespace Market.Data.Migrations
                         .HasColumnType("nvarchar(2500)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("DECIMAL(10,3)");
 
                     b.Property<string>("Title")
                         .IsRequired()

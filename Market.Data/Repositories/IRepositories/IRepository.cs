@@ -1,13 +1,11 @@
-﻿using System.Linq.Expressions;
-
-namespace Market.Data.Repositories.IRepositories
+﻿namespace Market.Data.Repositories.IRepositories
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T Get(Expression<Func<T, bool>> filter);
-        void Remove(T entity);
+        IEnumerable<T> GetAll(string? includeProperties = null);
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
         void Add(T entity);
+        void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
 
     }
